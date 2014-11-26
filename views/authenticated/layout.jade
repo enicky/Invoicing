@@ -1,0 +1,199 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0', name='viewport')
+		title INSPINIA | Empty Page
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/font-awesome/css/font-awesome.css')
+		link(rel='stylesheet', href='/css/animate.css')
+		link(rel='stylesheet', href='/css/style.css')
+	body.pace-done
+		.pace.pace-inactive
+			.pace-progress(style='width: 100%;', data-progress-text='100%', data-progress='99')
+				.pace-progress-inner
+			.pace-activity
+		#wrapper
+			nav.navbar-default.navbar-static-side(role='navigation')
+				.sidebar-collapse
+					ul#side-menu.nav
+						li.nav-header
+							.dropdown.profile-element
+								span
+									img.img-circle(src='img/profile_small.jpg', alt='image')
+								a.dropdown-toggle(href='#', data-toggle='dropdown')
+									span.clear
+										span.block.m-t-xs
+											strong.font-bold= displayName
+
+
+							.logo-element
+								| IN+
+						li
+							a(href='/authenticated/index')
+								i.fa.fa-th-large
+								span.nav-label Dashboards
+
+						li
+							a(href='#')
+								i.fa.fa-bar-chart-o
+								span.nav-label Klanten
+								span.fa.arrow
+							ul.nav.nav-second-level.collapse
+								li
+									a(href='/authenticated/klanten') Alle klanten
+								li
+									a(href='/authenticated/klanten/new') Nieuwe Klant
+						li
+							a(href='#')
+								i.fa.fa-barcode
+								span.nav-label Stockbeheer
+								span.fa.arrow
+							ul.nav.nav-second-level.collapse
+								li
+									a(href='/authenticated/klanten') Alle Artikels
+								li
+									a(href='/authenticated/klanten/new') Nieuw Artikel
+						li
+							a(href='#')
+								i.fa.fa-credit-card
+								span.nav-label Facturen
+								span.fa.arrow
+							ul.nav.nav-second-level.collapse
+								li
+									a(href='/authenticated/klanten') Alle Facturen
+								li
+									a(href='/authenticated/klanten') Offertes
+								li
+									a(href='/authenticated/klanten') Leverbonnen
+								li
+									a(href='/authenticated/klanten/new') Facturen
+								li
+									a(href='/authenticates/facturen/onbetaaldefacturen') Onbetaalde Facturen
+			#page-wrapper.gray-bg.dashboard-1
+				.row.border-bottom
+					nav.navbar.navbar-static-top(style='margin-bottom: 0;', role='navigation')
+						.navbar-header
+							a.navbar-minimalize.minimalize-styl-2.btn.btn-primary(href='#')
+								i.fa.fa-bars
+							form.navbar-form-custom(action='search_results.html', method='post', role='search')
+								.form-group
+									input#top-search.form-control(type='text', name='top-search', placeholder='Search for something...')
+						ul.nav.navbar-top-links.navbar-right
+
+							li.dropdown
+								a.dropdown-toggle.count-info(href='#', data-toggle='dropdown')
+									i.fa.fa-envelope
+									span.label.label-warning 16
+								ul.dropdown-menu.dropdown-messages
+									li
+										.dropdown-messages-box
+											a.pull-left(href='profile.html')
+												img.img-circle(src='img/a7.jpg', alt='image')
+												small.pull-right 46h ago
+												strong Mike Loreipsum
+												| started following
+												strong Monica Smith
+												| .
+												br
+												small.text-muted 3 days ago at 7:58 pm - 10.06.2014
+									li.divider
+									li
+										.dropdown-messages-box
+											a.pull-left(href='profile.html')
+												img.img-circle(src='img/a4.jpg', alt='image')
+											.media-body
+												small.pull-right.text-navy 5h ago
+												strong Chris Johnatan Overtunk
+												| started following
+												strong Monica Smith
+												| .
+												br
+												small.text-muted Yesterday 1:21 pm - 11.06.2014
+									li.divider
+									li
+										.dropdown-messages-box
+											a.pull-left(href='profile.html')
+												img.img-circle(src='img/profile.jpg', alt='image')
+											.media-body
+												small.pull-right 23h ago
+												strong Monica Smith
+												| love
+												strong Kim Smith
+												| .
+												br
+												small.text-muted 2 days ago at 2:30 am - 11.06.2014
+									li.divider
+									li
+										.text-center.link-block
+											a(href='mailbox.html')
+												i.fa.fa-envelope
+												strong Read All Messages
+							li.dropdown
+								a.dropdown-toggle.count-info(href='#', data-toggle='dropdown')
+									i.fa.fa-bell
+									span.label.label-primary 8
+								ul.dropdown-menu.dropdown-alerts
+									li
+										a(href='mailbox.html')
+											div
+												i.fa.fa-envelope.fa-fw
+												| You have 16 messages
+												span.pull-right.text-muted.small 4 minutes ago
+									li.divider
+									li
+										a(href='profile.html')
+											div
+												i.fa.fa-twitter.fa-fw
+												| 3 New Followers
+												span.pull-right.text-muted.small 12 minutes ago
+									li.divider
+									li
+										a(href='grid_options.html')
+											div
+												i.fa.fa-upload.fa-fw
+												| Server Rebooted
+												span.pull-right.text-muted.small 4 minutes ago
+									li.divider
+									li
+										.text-center.link-block
+											a(href='notifications.html')
+												strong See All Alerts
+												i.fa.fa-angle-right
+							li
+								a(href='/logout')
+									i.fa.fa-sign-out
+									| Log out
+
+
+				block content
+				.footer
+					.pull-right
+						| 10GB of
+						strong 250GB
+						| Free.
+					div
+						strong Copyright
+						| Example Company © 2014-2015
+		//
+			Mainly scripts
+		script(src='/js/jquery-2.1.1.js')
+		script(src='/js/bootstrap.min.js')
+		script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
+		script(src='/js/plugins/slimscroll/jquery.slimscroll.min.js')
+
+
+		//Flot
+		script(src='/js/plugins/flot/jquery.flot.js')
+		script(src='/js/plugins/flot/jquery.flot.tooltip.min.js')
+		script(src='/js/plugins/flot/jquery.flot.spline.js')
+		script(src='/js/plugins/flot/jquery.flot.resize.js')
+		script(src='/js/plugins/flot/jquery.flot.pie.js')
+
+
+		//
+			Custom and plugin javascript
+		script(src='/js/inspinia.js')
+		script(src='/js/plugins/pace/pace.min.js')
+
+		script(src='/js/pages/index.js')

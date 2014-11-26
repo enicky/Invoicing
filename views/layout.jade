@@ -1,0 +1,59 @@
+//Created by NicholasE on 24/09/2014.
+
+doctype html
+html(lang="en")
+	head
+		title= title
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
+		link(href="http://fonts.googleapis.com/css?family=Aguafina+Script" ,type="text/css" ,rel="stylesheet")
+		link(href='/css/font-awesome.css', rel='stylesheet')
+		link(href='/css/theme_auth.css', type='text/css', rel='stylesheet')
+		script(type="text/javascript", src="/js/lib/jquery-1.7.2.min.js")
+		script(type="text/javascript", src="/js/bootstrap.min.js")
+	body
+		.navbar.navbar-inverse.navbar-fixed-top
+			.navbar-header
+				button.navbar-toggle(data-target='.navbar-collapse', data-toggle='collapse', type='button')
+					span.icon-reorder
+				a.navbar-brand(href='/') IoT.
+				.hidden-xs
+					ul.nav.navbar-nav.pull-right
+						li#fat-menu.dropdown
+							a.visible-phone(data-toggle='dropdown', role='button', href='#') Logs &nbsp;
+								i.icon-caret-down
+							ul.dropdown-menu
+								li
+									a(href='/authenticated/logs') Unsent Messages
+								li
+									a(href='/authenticated/logs/all') All Messages
+								li
+									a(href='/autheticated/devices') Show Devices
+								li
+									a(href='/authenticated/sensors') Show Sensors
+								li
+									a(href='/authenticated/readings') Show Readings
+						li.hidden-phone
+							a(role='button', href='#') Settings
+						li#fat-menu.dropdown
+							a.dropdown-toggle(data-toggle='dropdown', role='button', href='#')
+								i.icon-user
+								| Jack Smith
+								i.icon-caret-down
+							ul.dropdown-menu
+								li
+									a(href='#', tabindex='-1') My Account
+								li.divider
+
+								li
+									a.visible-phone(href='#', tabindex='-1') Settings
+								li.divider.visible-phone
+								li
+									a(href='sign-in.html', tabindex='-1') Logout
+		.content
+			.row
+				.col-sm-12.main-content
+					block content
+		block footer
+			script(src='/js/bootstrap.min.js')
+
