@@ -21,12 +21,12 @@ var MongoManager = require('./lib/mongomanager');
 
 
 passport.serializeUser(function(user, done) {
-    //console.log('serial');
+    console.log('serial');
     done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-    //console.log('deserial');
+    console.log('deserial');
     done(null, user);
 });
 
@@ -34,6 +34,10 @@ passport.deserializeUser(function(user, done) {
 passport.use(new LocalStrategy(
     function(username, password, done) {
         var du = cfg.default_user;
+        console.log('default user : ', du);
+        console.log('-------------------');
+        console.log('username : ', username);
+        console.log('password : ', password);
         if(du.username == username && du.password == password){
             return done(null, du);
         }else if(du.username != username){

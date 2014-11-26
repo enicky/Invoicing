@@ -44,6 +44,7 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         };
 
         var errors = req.flash('error');
+        console.log('eerrors : ', errors);
         if(errors){
           messages.error = errors;
         }
