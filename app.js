@@ -133,6 +133,7 @@ subcategory_ids = [  ];
 
 //AUTHENTICATED
 app.get('/authenticated/index', routes.authenticatedIndex);
+app.get('/authenticated/klanten', routes.authenticatedKlanten);
 /*
 app.get('/authenticated/index', routes.authenticatedIndex);
 app.get('/authenticated/logs', routes.authenticatedLogs);

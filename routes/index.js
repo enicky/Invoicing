@@ -55,7 +55,8 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
       };
 
       Controller.getLogout = function(req, res){
-
+        req.logout();
+        res.redirect('/');
       }
 
       /**
@@ -67,6 +68,10 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         res.render('./authenticated/index',{
           displayName : 'Georgy Guglielmini'
         });
+      }
+
+      Controller.authenticatedKlanten = function(req, res){
+        res.render('./authenticated/klanten/index');
       }
 
       var exports = Controller;
