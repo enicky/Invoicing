@@ -118,6 +118,7 @@ app.get('/login', routes.getLogin);
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
     function(req, res) {
+        Logger.log('info','Authentication is done ... redirect naar index page');
         res.redirect('/authenticated/index');
     });
 
