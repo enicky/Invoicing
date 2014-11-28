@@ -67,10 +67,13 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
       Controller.authenticatedIndex = function (req, res) {
         var mm = req.app.get('mongo');
         mm.getImportantKlanten(function(err, importantKlanten){
-          res.render('./authenticated/index',{
-            displayName : 'Georgy Guglielmini',
-            important : importantKlanten
-          });
+          mm.getAlmostEmptyStock(function(err, emptyStock){
+            res.render('./authenticated/index',{
+              displayName : 'Georgy Guglielmini',
+              important : importantKlanten,
+              emptystock : emptyStock
+            });
+          })
         })
 
       }
@@ -85,6 +88,7 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         var mm = req.app.get('mongo');
         mm.getAllKlanten(function(err, klanten){
           res.render('./authenticated/klanten/index',{
+            displayName : 'Georgy Guglielmini',
             klanten : klanten
           });
         })
@@ -96,7 +100,9 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
        * @param res
        */
       Controller.authenticatedKlantenNew = function(req, res){
-        res.render('./authenticated/klanten/new');
+        res.render('./authenticated/klanten/new',{
+          displayName : 'Georgy Guglielmini',
+        });
       }
 
       /**
@@ -171,6 +177,7 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         var mm = req.app.get('mongo');
         mm.getKlantById(klantid, function(err, klant){
           res.render('./authenticated/klanten/edit',{
+            displayName : 'Georgy Guglielmini',
             klant : klant
           });
         });
@@ -189,13 +196,14 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         var mm = req.app.get('mongo');
         mm.getAllStock(function(err, stock){
           res.render('./authenticated/stock',{
+            displayName : 'Georgy Guglielmini',
             stock : stock
           });
         });
       }
 
       Controller.authenticatedStockNew = function(req, res){
-        res.render('./authenticated/stock/new');
+        res.render('./authenticated/stock/new',{displayName : 'Georgy Guglielmini'});
       }
 
       Controller.authenticatedStockPostNew = function(req, res){

@@ -43,16 +43,19 @@ block content
 							.ibox-title
 								h5 Stock Overzicht (Bijna Op)
 								span.label.label-primary.pull-right Stock
-
 							.ibox-content
-								div
-									.pull-right.text-right
-										small.font-bold.text-danger 2
-									h4
-										| Artikel 1243212
-										br
-										small.m-r
-											a(href='graph²_flot.html')  Controleer Artikel!
+								each item in emptystock
+									div
+										.pull-right.text-right
+											small.font-bold.text-danger #{item.stock}
+										h4
+											| Artikel #{item.naam} (#{item.artikelnummer})
+											br
+											small.m-r
+												a(href='graph²_flot.html')  Controleer Artikel!
+								a.btn.btn-primary.btn-block.m-t(href='/authenticated/stock')
+									i.fa.fa-arrow-down
+									| &nbsp;Toon Stock
 					.col-lg-4
 						.ibox.float-e-margins
 							.ibox-title
