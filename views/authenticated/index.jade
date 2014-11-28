@@ -62,15 +62,12 @@ block content
 							.ibox-content
 								div
 									.feed-activity-list
-										.feed-element
-											a.pull-left(href='/authenticated/klanten/edit/1234') Link
-											.media-body
-												strong Nicky Eichmann
-										.feed-element
-											a.pull-left(href='/authenticated/klanten/edit/1234') Link
-											.media-body
-												strong Kim Claessens
-									button.btn.btn-primary.btn-block.m-t
+										each klant in important
+											.feed-element
+												a.pull-left(href='/authenticated/klanten/edit/#{klant._id}') Link
+												.media-body
+													strong= klant.naam
+									a.btn.btn-primary.btn-block.m-t(href='/authenticated/klanten')
 										i.fa.fa-arrow-down
 										| &nbsp;Toon alle klanten
 					.col-lg-4

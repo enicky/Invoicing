@@ -133,7 +133,27 @@ subcategory_ids = [  ];
 
 //AUTHENTICATED
 app.get('/authenticated/index', routes.authenticatedIndex);
+
+
+//KLANTEN
 app.get('/authenticated/klanten', routes.authenticatedKlanten);
+app.get('/authenticated/klanten/new', routes.authenticatedKlantenNew);
+app.post('/authenticated/klanten/new', routes.authenticatedKlantenPostNew);
+app.get('/authenticated/klanten/edit/:klantid', routes.authenticatedKlantenEdit);
+app.post('/authenticated/klanten/edit', routes.authenticatedKlantenPostEdit);
+app.get('/authenticated/klanten/delete/:klantid', routes.authenticatedKlantenDelete);
+
+//STOCK
+app.get('/authenticated/stock', routes.authenticatedStock);
+app.get('/authenticated/stock/new', routes.authenticatedStockNew);
+app.post('/authenticated/stock/new', routes.authenticatedStockPostNew)
+
+
+//ERROR
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 /*
 app.get('/authenticated/index', routes.authenticatedIndex);
 app.get('/authenticated/logs', routes.authenticatedLogs);

@@ -8,31 +8,31 @@ block foot
 	script(src="/js/plugins/dataTables/jquery.dataTables.js")
 	script(src="/js/plugins/dataTables/dataTables.bootstrap.js")
 	script(src="/js/plugins/dataTables/dataTables.responsive.js")
-	script(src='/js/pages/klanten/index.js')
+	script(src='/js/pages/stock/index.js')
 
 block content
 	.row.wrapper.border-bottom.white-bg.page-heading
 		.col-lg-10
-			h2 Data Tables
+			h2 Stock
 			ol.breadcrumb
 				li
 					a(href='/authenticated/index') Home
 				li
-					a Klanten
+					a(href='/authenticated/stock') Stock
 				li.active
-					strong Alle Klanten
+					strong Alle Artikels
 		.col-lg-2
 	.wrapper.wrapper-content.animated.fadeInRight
 		.row
 			.col-lg-3
 				.ibox.float-e-margins
 					.ibox-content
-						a.btn.btn-primary(href='/authenticated/klanten/new') Voeg Klant Toe
+						a.btn.btn-primary(href='/authenticated/stock/new') Voeg Artikel Toe
 		.row
 			.col-lg-12
 				.ibox.float-e-margins
 					.ibox-title
-						h5 Overzicht van alle klanten
+						h5 Overzicht van alle Artikels
 						.ibox-tools
 							a.collapse-link
 								i.fa.fa-chevron-up
@@ -49,40 +49,28 @@ block content
 						table.table.table-striped.table-bordered.table-hover.dataTables-example
 							thead
 								tr
-									th Klant Nummer
+									th Artikelnummer
 									th Naam
-									th Straat
-									th Nummer
-									th Gemeente
-									th Belangrijk
+									th In Stock
 									th Action
 							tbody
-								each item in klanten
+								each item in stock
 									tr
-										td= item.klantnummer
+										td= item.artikelnummer
 										td= item.naam
-										td= item.straat
-										td= item.nummer
-										td= item.gemeente
+										td= item.stock
 										td
-											if(item.important)
-												i.fa.fa-check.text-navy
-											else
-												| &nbsp;
-										td
-											a.btn.btn-white.btn-sm(href='/authenticated/klanten/edit/#{item._id}')
+											a.btn.btn-white.btn-sm(href='/authenticated/stock/edit/#{item._id}')
 												i.fa.fa-pencil
 												| &nbsp;Edit
 											| &nbsp;
-											a.btn.btn-danger.btn-sm(href='/authenticated/klanten/delete/#{item._id}')
+											a.btn.btn-danger.btn-sm(href='/authenticated/stock/delete/#{item._id}')
 												i.fa.fa-trash
 												| &nbsp;Delete
 
 							tfoot
 								tr
-									th Klant Nummer
+									th Artikelnummer
 									th Naam
-									th Straat
-									th Nummer
-									th Gemeente
+									th In Stock
 									th Action
