@@ -206,6 +206,11 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         res.render('./authenticated/stock/new',{displayName : 'Georgy Guglielmini'});
       }
 
+      /**
+       * voeg nieuwe stock toe
+       * @param req
+       * @param res
+       */
       Controller.authenticatedStockPostNew = function(req, res){
         var naam = req.body.naam;
         var stock = req.body.stock;
@@ -218,6 +223,38 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         var mm = req.app.get('mongo');
         mm.addNewArticle(newArticle, function(err){
           res.redirect('/authenticated/stock');
+        });
+      }
+
+      /**
+       * Render edit page for stock
+       * @param req
+       * @param res
+       */
+      Controller.authenticatedStockEdit  =function(req, res){
+        var stockid = req.params.stockid;
+        var mm = req.app.get('mongo');
+        mm.getStockById(stockid, function(err, stock){
+          res.render('./authenticated/stock/edit',{
+            displayName : 'Georgy Guglielmini',
+            stock : stock
+          });
+        });
+      }
+
+      Controller.authenticatedStockPostEdit = function(req, res){
+        var stockid = req.body.stockid;
+        var naam = req.body.naam;
+        var stock = req.body.stock;
+
+        var newArticle = {
+          naam : naam,
+          stock : stock
+        };
+
+        var mm = req.app.get('mongo');
+        mm.updateKlant(klantid, newKlant, function(err){
+          res.redirect('/authenticated/klanten');
         });
       }
 

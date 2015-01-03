@@ -147,7 +147,7 @@ app.get('/authenticated/klanten/delete/:klantid', routes.authenticatedKlantenDel
 app.get('/authenticated/stock', routes.authenticatedStock);
 app.get('/authenticated/stock/new', routes.authenticatedStockNew);
 app.post('/authenticated/stock/new', routes.authenticatedStockPostNew)
-
+app.get('/authenticated/stock/edit/:stockid', routes.authenticatedStockEdit);
 
 //ERROR
 app.use(function(err, req, res, next){
