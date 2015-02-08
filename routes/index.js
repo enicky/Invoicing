@@ -138,6 +138,34 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         });
       }
 
+			Controller.authenticatedApiKlantenPostNew = function(req, res){
+				var naam = req.body.naam;
+				var straat = req.body.straat;
+				var nummer = req.body.nummer;
+				var gemeente = req.body.gemeente;
+				var postcode = req.body.postcode;
+				var isbelangrijk = req.body.belangrijk;
+				if(typeof (isbelangrijk) == "undefined"){
+					isbelangrijk = false;
+				}else if(isbelangrijk == 'on'){
+					isbelangrijk = true;
+				}
+
+				var newKlant = {
+					naam : naam,
+					straat : straat,
+					nummer : nummer,
+					gemeente : gemeente,
+					postcode : postcode,
+					important : isbelangrijk
+				};
+
+				var mm = req.app.get('mongo');
+				mm.addNewKlant(newKlant, function(err, newKlant){
+					res.send({"success" : true, "klant" : newKlant});
+				});
+			}
+
       Controller.authenticatedKlantenPostEdit = function(req, res){
         var klantid = req.body.klantid;
         var naam = req.body.naam;
@@ -230,6 +258,7 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
        * Render edit page for stock
        * @param req
        * @param res
+			 *
        */
       Controller.authenticatedStockEdit  =function(req, res){
         var stockid = req.params.stockid;
@@ -246,17 +275,61 @@ define(['fs', 'path', /*'bonescript',*/ 'restler', 'sugar'],
         var stockid = req.body.stockid;
         var naam = req.body.naam;
         var stock = req.body.stock;
+				var artikelnummer = req.body.artikelnummer;
+				var prijs = req.body.prijs;
 
         var newArticle = {
+					_id : stockid,
+					artikelnummer :artikelnummer,
           naam : naam,
-          stock : stock
+          stock : stock,
+					prijs : prijs
         };
-
+				console.log('update Article : ', newArticle);
         var mm = req.app.get('mongo');
-        mm.updateKlant(klantid, newKlant, function(err){
-          res.redirect('/authenticated/klanten');
+        mm.updateStock(stockid, newArticle, function(err){
+          res.redirect('/authenticated/stock');
         });
       }
+
+			Controller.authenticatedStockDelete = function(req, res){
+				var stockid = req.params.stockid;
+				var mm = req.app.get('mongo');
+				mm.deleteStock(stockid, function(err){
+					res.redirect('back');
+				})
+			}
+
+			//Invoices
+			Controller.authenticatedAllInvoices = function(req, res){
+				var mm = req.app.get('mongo');
+				mm.getAllInvoices(function(err, invoices){
+					res.render('./authenticated/facturen',{
+						displayName : 'Georgy Guglielmini',
+						invoices : invoices
+					});
+				});
+			}
+
+			Controller.authenticatedQuotesNew = function(req, res){
+				var mm = req.app.get('mongo');
+				var vandaag = new Date();
+				var zevenVerder = new Date().addDays(7);
+
+
+				var formatted = vandaag.format('{dd}/{MM}/{yyyy}');
+				mm.getAllKlanten(function(err, klanten){
+					mm.getAllStock(function(err, stock){
+						res.render('./authenticated/facturen/newQuote',{
+							displayName : 'Georgy Guglielmini',
+							klanten : klanten,
+							today : formatted,
+							due : zevenVerder.format('{dd}/{MM}/{yyyy}'),
+							producten : stock ? stock : []
+						});
+					})
+				})
+			}
 
       var exports = Controller;
 

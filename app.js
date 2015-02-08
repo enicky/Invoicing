@@ -21,12 +21,10 @@ var MongoManager = require('./lib/mongomanager');
 
 
 passport.serializeUser(function(user, done) {
-    console.log('serial');
     done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-    console.log('deserial');
     done(null, user);
 });
 
@@ -34,10 +32,6 @@ passport.deserializeUser(function(user, done) {
 passport.use(new LocalStrategy(
     function(username, password, done) {
         var du = cfg.default_user;
-        console.log('default user : ', du);
-        console.log('-------------------');
-        console.log('username : ', username);
-        console.log('password : ', password);
         if(du.username == username && du.password == password){
             return done(null, du);
         }else if(du.username != username){
@@ -143,11 +137,19 @@ app.get('/authenticated/klanten/edit/:klantid', routes.authenticatedKlantenEdit)
 app.post('/authenticated/klanten/edit', routes.authenticatedKlantenPostEdit);
 app.get('/authenticated/klanten/delete/:klantid', routes.authenticatedKlantenDelete);
 
+app.post('/authenticated/api/klanten/new', routes.authenticatedApiKlantenPostNew);
+
 //STOCK
 app.get('/authenticated/stock', routes.authenticatedStock);
 app.get('/authenticated/stock/new', routes.authenticatedStockNew);
 app.post('/authenticated/stock/new', routes.authenticatedStockPostNew)
 app.get('/authenticated/stock/edit/:stockid', routes.authenticatedStockEdit);
+app.post('/authenticated/stock/edit', routes.authenticatedStockPostEdit);
+app.get('/authenticated/stock/delete/:stockid', routes.authenticatedStockDelete);
+
+//invoices
+app.get('/authenticated/allinvoices', routes.authenticatedAllInvoices);
+app.get('/authenticated/quotes/new', routes.authenticatedQuotesNew);
 
 //ERROR
 app.use(function(err, req, res, next){

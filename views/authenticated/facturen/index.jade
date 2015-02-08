@@ -1,5 +1,6 @@
-extends ../layout
+//Created by NicholasE on 5/02/2015.
 
+extends ../layout
 block head
 	link(rel='stylesheet', href='/css/plugins/dataTables/dataTables.bootstrap.css')
 	link(rel='stylesheet', href='/css/plugins/dataTables/dataTables.responsive.css')
@@ -9,7 +10,6 @@ block foot
 	script(src="/js/plugins/dataTables/dataTables.bootstrap.js")
 	script(src="/js/plugins/dataTables/dataTables.responsive.js")
 	script(src='/js/pages/stock/index.js')
-
 block content
 	.row.wrapper.border-bottom.white-bg.page-heading
 		.col-lg-10
@@ -27,12 +27,14 @@ block content
 			.col-lg-3
 				.ibox.float-e-margins
 					.ibox-content
-						a.btn.btn-primary(href='/authenticated/stock/new') Voeg Artikel Toe
+						a.btn.btn-primary(href='/authenticated/invoices/new') Voeg Factuur Toe
+						| &nbsp;
+						a.btn.btn-primary(href='/authenticated/quotes/new') Voeg Offerte Toe
 		.row
 			.col-lg-12
 				.ibox.float-e-margins
 					.ibox-title
-						h5 Overzicht van alle Artikels
+						h5 Overzicht van alle Facturen (alle statussen)
 						.ibox-tools
 							a.collapse-link
 								i.fa.fa-chevron-up
@@ -49,18 +51,18 @@ block content
 						table.table.table-striped.table-bordered.table-hover.dataTables-example
 							thead
 								tr
-									th Artikelnummer
-									th Naam
-									th In Stock
-									th Prijs
+									th Invoice Id
+									th Title
+									th invoiceDate
+									th status
 									th Action
 							tbody
-								each item in stock
+								each item in invoices
 									tr
-										td= item.artikelnummer
-										td= item.naam
-										td= item.stock
-										td= item.prijs
+										td= item.invoiceId
+										td= item.title
+										td= item.invoiceDate
+										td= item.status
 										td
 											a.btn.btn-white.btn-sm(href='/authenticated/stock/edit/#{item._id}')
 												i.fa.fa-pencil
@@ -69,11 +71,10 @@ block content
 											a.btn.btn-danger.btn-sm(href='/authenticated/stock/delete/#{item._id}')
 												i.fa.fa-trash
 												| &nbsp;Delete
-
 							tfoot
 								tr
-									th Artikelnummer
-									th Naam
-									th In Stock
-									th Prijs
+									th Invoice Id
+									th Title
+									th invoiceDate
+									th status
 									th Action

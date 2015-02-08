@@ -35,8 +35,8 @@ block content
 						a.close-link
 							i.fa.fa-times
 				.ibox-content
-					form.form-horizontal(method='POST', action='/authenticated/stock/new')
-						input(type='hidden', name='stockid', value='"{stock._id}')
+					form.form-horizontal(method='POST', action='/authenticated/stock/edit')
+						input(type='hidden', name='stockid', value='#{stock._id}')
 						.form-group
 							label.col-lg-2.control-label Artikel nummer
 							.col-lg-10
@@ -45,6 +45,10 @@ block content
 							label.col-lg-2.control-label Naam
 							.col-lg-10
 								input.form-control(type='text', placeholder='Naam', name='naam', value='#{stock.naam}')
+						.form-group
+							label.col-lg-2.control-label Prijs
+							.col-lg-10
+								input.form-control(type='text', placeholder='Prijs', name='prijs', value='#{stock.prijs}')
 						.form-group
 							label.col-lg-2.control-label Stock
 							.col-lg-10

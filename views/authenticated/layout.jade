@@ -77,15 +77,15 @@ body.pace-done
 								span.fa.arrow
 							ul.nav.nav-second-level.collapse
 								li
-									a(href='/authenticated/klanten') Alle Facturen
+									a(href='/authenticated/allinvoices') Alle Facturen
 								li
-									a(href='/authenticated/klanten') Offertes
+									a(href='/authenticated/quotes') Offertes
 								li
-									a(href='/authenticated/klanten') Leverbonnen
+									a(href='/authenticated/delivery') Leverbonnen
 								li
-									a(href='/authenticated/klanten/new') Facturen
+									a(href='/authenticated/invoices') Facturen
 								li
-									a(href='/authenticates/facturen/onbetaaldefacturen') Onbetaalde Facturen
+									a(href='/authenticates/unpaidinvoices') Onbetaalde Facturen
 			#page-wrapper.gray-bg.dashboard-1
 				.row.border-bottom
 					nav.navbar.navbar-static-top(style='margin-bottom: 0;', role='navigation')
@@ -129,6 +129,7 @@ body.pace-done
 		script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
 		script(src='/js/plugins/slimscroll/jquery.slimscroll.min.js')
 
+		script(src='//cdnjs.cloudflare.com/ajax/libs/sugar/1.4.1/sugar-full.development.js')
 
 		//Flot
 		script(src='/js/plugins/flot/jquery.flot.js')
